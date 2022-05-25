@@ -15,4 +15,8 @@ export class PostsService {
     return this.httpClient.get<IPost[]>(urls.posts)
   }
 
+  getById(id: string): Observable<IPost> {
+    return this.httpClient.get<IPost>(`${urls.posts}/${id}`)
+  }
+
 }

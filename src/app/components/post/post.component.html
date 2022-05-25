@@ -1,3 +1,3 @@
-<div>
-  {{post | json}}
+<div routerLinkActive="active">
+  {{post.id}} - <a routerLink="{{post.id}}" [state]="post">{{post.title}}</a>
 </div>

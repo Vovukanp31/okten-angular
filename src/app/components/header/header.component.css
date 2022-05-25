@@ -1,0 +1,17 @@
+.pages-container {
+height: 40px;
+  background-color: burlywood;
+  border-bottom: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.active {
+  color: brown;
+}
