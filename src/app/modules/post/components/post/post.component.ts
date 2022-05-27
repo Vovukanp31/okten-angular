@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 
-import {IPost} from "../../interfaces";
+import {IPost} from "../../../../interfaces";
 
 @Component({
   selector: 'app-post',
