@@ -1,3 +1,3 @@
-export * from './post.interface';
-export * from './comment.interface';
 export * from './user.interface';
+export * from './car.interface';
+export * from './token.interface';

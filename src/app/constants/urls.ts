@@ -3,7 +3,7 @@ import {environment} from "../../environments/environment";
 const {api: baseURL} = environment;
 
 export const urls = {
-  users : `${baseURL}/users`,
-  posts : `${baseURL}/posts`,
-  comments: `${baseURL}/comments`
+  auth: `${baseURL}/auth`,
+  users: `${baseURL}/users`,
+  cars: `${baseURL}/cars`,
 }
