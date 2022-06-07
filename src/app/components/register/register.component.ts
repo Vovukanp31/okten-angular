@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
-import {AuthService} from "../../services";
-import {Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+
+import {AuthService} from '../../services';
 
 @Component({
   selector: 'app-register',
@@ -9,33 +10,40 @@ import {Router} from "@angular/router";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
   form!: FormGroup;
-  usernameError!: string;
+  userNameError!: string;
 
-  constructor(private authService: AuthService, private router: Router) { this._createForm() }
+  constructor(private authService: AuthService, private router: Router) {
+    this._createForm()
+  }
 
   ngOnInit(): void {
   }
 
   _createForm(): void {
     this.form = new FormGroup({
-      username: new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(25)]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(25)]),
-      confirmPassword: new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(25)]),
-    }, [this._checkPassword])
+      username: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
+      confirmPassword: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)])
+    }, [this._checkPasswords])
   }
 
   register(): void {
-   const formValue = this.form.value;
-   delete formValue.confirmPassword;
-   this.authService._register(formValue).subscribe(() => this.router.navigate(['login']),
-      e => this.usernameError = e.error.username[0])
+    const rawValue = this.form.getRawValue();
+    delete rawValue.confirmPassword;
+    this.authService.register(rawValue).subscribe({
+        next: () => {
+          this.router.navigate(['login'])
+        },
+        error: e => this.userNameError = e.error.username[0]
+      }
+    )
+
   }
 
-  _checkPassword(form: AbstractControl): ValidationErrors| null {
-   const password = form.get('password');
-   const confirmPassword = form.get('confirmPassword');
-   return password?.value === confirmPassword?.value ? null : {notSame: true}
+  _checkPasswords(form: AbstractControl): ValidationErrors | null {
+    const password = form.get('password')
+    const confirmPassword = form.get('confirmPassword')
+    return password?.value === confirmPassword?.value ? null : {notSame: true}
   }
 }

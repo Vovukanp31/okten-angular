@@ -2,13 +2,16 @@
   <div><label>model: <input type="text" formControlName="model"></label></div>
   <div><label>year: <input type="text" formControlName="year"></label></div>
   <div><label>price: <input type="text" formControlName="price"></label></div>
-  <button (click)="saveCar()">{{!carForUpdate ? 'save' : 'update'}}</button>
+  <button (click)="save()">{{!carForUpdate ? 'save' : 'update'}}</button>
 </form>
 <hr>
-
-<div>
+<br>
+<hr>
+<br>
+<hr>
+<div class="car-">
   <div *ngFor="let car of cars">
-    {{car.id}} || {{car.model}} || {{car.year}} || {{car.price}}
+    Car id - {{car.id}} || Model - {{car.model}} || Year - {{car.year}} || Price - {{car.price}}
     <button (click)="update(car)">update</button>
     <button (click)="delete(car.id)">delete</button>
   </div>

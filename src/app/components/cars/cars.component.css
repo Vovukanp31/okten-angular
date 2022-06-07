@@ -1,0 +1,18 @@
+div {
+  background-color: burlywood;
+  padding: 10px;
+  text-align: center;
+  margin: 5px;
+}
+
+button {
+  background-color: cadetblue;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #51bcbf;
+}
